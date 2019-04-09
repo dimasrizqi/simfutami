@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{ title }} </title>
+</head>
+<body>
+	Berikut adalah daftar hasil produksi<br><br>
+	<table class="table">
+	  <thead>
+	    <tr>
+	      <th scope="col">No.</th>
+	      <th scope="col">Kode Product</th>
+	      <th scope="col">No. Batch</th>
+	      <th scope="col">No. Palet</th>
+	      <th scope="col">Tanggal Produksi</th>
+	      <th scope="col">Jam Produksi</th>
+	      <th scope="col">Options</th>
+	    </tr>
+	  </thead>
+	  <tbody>   
+	  	{% for a in productperpalet reversed %}
+	    	<tr>
+		      <th scope="row">{{forloop.counter }}</th>
+		      <td>{{ a.kode_product }}</td>
+		      <td>{{ a.nomor_batch }}</td>
+		      <td>{{ a.nomor_palet }}</td>
+		      <td> {{a.tanggal_produksi|date:'d F Y'}} </td>
+		      <td> {{a.tanggal_produksi|date:'H:i'}} </td>
+		      <td><a class="btn btn-danger" href="/produksi/palet/{{ a.productperpalet_id }}" title="">Lihat Data</a>
+		    </tr>
+		{%endfor%}	
+	  </tbody>
+	</table>
+</body>
+</html>

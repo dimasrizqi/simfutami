@@ -91,7 +91,7 @@ DATABASES = {
         'NAME': 'futami',
         'USER': 'postgres',
         'PASSWORD': 'futami17fruit',
-        'HOST': '127.0.0.1',
+        'HOST': 'localhost',
         'PORT': '5432',
     }
 }
@@ -122,11 +122,12 @@ LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'Asia/Jakarta'
 
+USE_TZ = True
+
 USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)

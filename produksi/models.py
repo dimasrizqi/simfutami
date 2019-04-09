@@ -1,4 +1,6 @@
 from django.db import models
+from django.utils import timezone
+import datetime
 
 class Instagram(models.Model):
 	nama_depan	  	= models.CharField(max_length=100)
@@ -52,7 +54,7 @@ class status_product(models.Model):
 	product_per_palet =  models.ForeignKey('productperpalet')
 	status_product =  models.ForeignKey('jenis_status')
 	pengguna = models.ForeignKey('pengguna')
-	update_time = models.DateTimeField(auto_now_add=True)
+	update_time = models.DateTimeField(default=timezone.now)
 
 	def __str__(self):
 		return "{}-{}".format(self.status_product,self.product_per_palet)
@@ -65,7 +67,7 @@ class product(models.Model):
 	varian =  models.CharField(max_length=100)
 	deskripsi =  models.CharField(max_length=200)
 	pengguna = models.ForeignKey('pengguna')
-	update_time = models.DateTimeField(auto_now_add=True)
+	update_time = models.DateTimeField(default=timezone.now)
 	def __str__(self):
 		return (self.kode_product)
 
@@ -74,11 +76,10 @@ class productperpalet(models.Model):
 	kode_product = models.ForeignKey('product')
 	nomor_batch = models.CharField(max_length=100)
 	nomor_palet = models.CharField(max_length=100)
-	tanggal_produksi = models.DateTimeField(auto_now_add=True)
+	tanggal_produksi = models.DateTimeField(default=timezone.now)
 	jumlah_dus  = models.IntegerField()
 	jumlah_botol  = models.IntegerField()
 	pengguna = models.ForeignKey('pengguna')
-	update_time = models.DateTimeField(auto_now_add=True)
 	def __str__(self):
 		return "%s-%s-%s-%s" % (self.productperpalet_id, self.nomor_batch, self.nomor_palet, self.kode_product)
 
@@ -97,7 +98,7 @@ class transisi(models.Model):
 	product_per_palet =  models.ForeignKey('productperpalet')
 	status_perpindahan = models.CharField(max_length=100, choices=choose_status_perpindahan)
 	pengguna = models.ForeignKey('pengguna')
-	update_time = models.DateTimeField(auto_now_add=True)
+	update_time = models.DateTimeField(default=timezone.now)
 
 	def __str__(self):
 		return "{}.{}.{}.{}".format(self.update_time,self.transisi_id,self.status_perpindahan,self.product_per_palet)
@@ -168,7 +169,7 @@ class gudangracking(models.Model):
 	lorong = models.CharField(max_length=10, choices=choose_lorong)
 	baris = models.CharField(max_length=10, choices=choose_baris)
 	pengguna = models.ForeignKey('pengguna')
-	update_time = models.DateTimeField(auto_now_add=True)
+	update_time = models.DateTimeField(default=timezone.now)
 
 	def __str__(self):
 		return "Kode Product {} - Blok {}, Tingkat {}, Lorong {}, Baris {} ".format(self.product_per_palet,self.blok,self.tingkat,self.lorong,self.baris)
@@ -192,7 +193,7 @@ class productkeluar(models.Model):
 	nomor_segel = models.CharField(max_length=20) 
 	referensi_qc =  models.CharField(max_length=10, choices=choose_referensi_qc)
 	nomor_do = models.CharField(max_length=20)
-	update_time = models.DateTimeField(auto_now_add=True)
+	update_time = models.DateTimeField(default=timezone.now)
 	pengguna = models.ForeignKey('pengguna')
 
 	def __str__(self):

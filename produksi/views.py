@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse 
 from . models import *
 from .forms import *
+from datetime import datetime
 
 def detailtransisi(request,product_per_palet):
 	var_gudang_racking = gudangracking.objects.filter(product_per_palet=product_per_palet).order_by('-update_time')#sort newert to old
@@ -13,6 +14,7 @@ def detailtransisi(request,product_per_palet):
 		"status_product" : var_status_product,
 		"gudang_racking" : var_gudang_racking,
 	}
+	print(datetime.now())
 	return render(request,'detail_transisi.html',context)
 
 
@@ -50,12 +52,14 @@ def updatestatus(request,update_id):
 		"statusproductform" : statusproductform,
 	}
 	return render(request,'update_status.html',context)
-	
+
+
 def updateqc(request,update_id,pengguna_id):
 	data = {
 		'product_per_palet'		: update_id,
 		'pengguna' : pengguna_id,
 	}
+
 	statusproductform = status_product_form(request.POST or None, initial=data)
 	transisi_form = transisiform(request.POST or None, initial=data)
 	if request.method == 'POST':
@@ -114,6 +118,25 @@ def createpalet(request,pengguna_id):
 	}
 	return render(request,'create_palet.html',context)
 
+def createproduct(request,pengguna_id):
+	var_pengguna = pengguna.objects.get(user_id=pengguna_id)
+
+	data = {
+		'pengguna' : pengguna_id,
+	}
+	productperpalet_form = productform(request.POST or None, initial=data)
+
+	if request.method == 'POST':
+		if productperpalet_form.is_valid():
+			productperpalet_form.save()
+			return render(request,'ok.html')
+
+	context = {
+		"title"			: "Membuat Palet Baru",
+		"productperpalet_form" : productperpalet_form,
+		"pengguna" : var_pengguna,
+	}
+	return render(request,'create_palet.html',context)
 
 def updatewarehouse(request,update_id,pengguna_id):
 	data = {
@@ -172,4 +195,14 @@ def palet(request,productperpalet_id):
 		}
 
 	return render(request, 'show_perpalet.html', context)
+
+def showall(request):
+	var_productperpalet = productperpalet.objects.all()
+	var_title = "Hasil Produksi"
+	context = {
+		'productperpalet' : var_productperpalet,
+		'title' : var_title,
+		}
+
+	return render(request, 'showall.html', context)
 

@@ -6,23 +6,8 @@
 <body>
 	<form method="POST">
 	{% csrf_token %}
-	
-<!-- 	<table>
-		<tr>
-			<td><b>Kode product perpalet</b></td>
-			<td>: {{transisi_form.product_per_palet}} </td>
-		</tr>	
-		<tr>
-			<td><b>Lokasi product perpalet </b></td> 
-			<td>: {{transisi_form.status_perpindahan }} </td> 
-		</tr>
-		<tr>
-			<td><b>Status Product </b> </td>
-			<td>: {{statusproductform.status_product }}</td>
-		</tr>
-	</table> -->
 	<table>
-				{{productperpalet_form.as_table}} 
+	{{productperpalet_form.as_table}} 
 	</table>
 	<button type="Submit">SAVE</button>
 	</form>

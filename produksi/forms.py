@@ -1,10 +1,29 @@
 from django import forms
-from .models import Instagram, transisi, tujuan, gudangracking, status_product, productperpalet
+from .models import Instagram, transisi, tujuan, gudangracking, status_product, productperpalet, product
 
 class productperpaletform(forms.ModelForm):
 	class Meta:
 		model = productperpalet
 		fields = '__all__'
+		widgets = {
+			'tanggal_produksi' : forms.TextInput(
+				attrs = {
+					'readonly':'readonly'
+				}
+				)
+		}
+
+class productform(forms.ModelForm):
+	class Meta:
+		model = product
+		fields = '__all__'
+		widgets = {
+			'update_time' : forms.TextInput(
+				attrs = {
+					'readonly':'readonly'
+				}
+				)
+		}
 
 class InstagramForm(forms.ModelForm):
 	class Meta:

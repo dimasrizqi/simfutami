@@ -53,9 +53,18 @@ z-index: 1">
 </table>
 
 {% endfor%}
+<form>
+<button onclick="print_qr()">Print</button>
+<input type="button" value="Kembali" onclick="history.back()">
+
+
+</form>
 </div>
 <script type="text/javascript">
 
+function print_qr() {
+  window.print();
+}
 function resizeInput() {
     $(this).attr('size', $(this).val().length);
 }
