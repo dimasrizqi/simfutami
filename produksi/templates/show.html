@@ -1,0 +1,53 @@
+{% load staticfiles %}<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+<head>
+<title>{{ title }}</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+<script type="text/javascript" src="{% static 'jquery.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'qrcode.js' %}"></script>
+</head>
+<body>
+{% for a in release %}
+Detail Produksi 
+<div id="qrcode" style="width:200px; height:200px; margin-top:15px;  padding:10px;"></div>
+<input id="text" type="text" value="{{ a.produksi_id }}-{{ a.nomor_batch }}-{{ a.jumlah_dus }}-{{ a.jumlah_dus }}-{{ a.status }}-{{ a.rak }}-{{ a.lantai }}-{{ a.baris }}" style="width:200px;text-align: center;" readonly>
+<!-- <input id="text" type="text" value="{{ a.produksi_id }}" style="width:200px" readonly> -->
+<br />
+id produksi = {{ a.produksi_id }} <br>
+nomor batch = {{ a.nomor_batch }} <br>
+jumlah dus = {{ a.jumlah_dus }} <br>
+jumlah botol = {{ a.jumlah_botol }} <br>
+status = {{ a.status }} <br>
+lokasi rak gudang = Rak {{ a.rak }} - Lantai {{ a.lantai }} - Baris {{ a.baris }}
+
+{% endfor%}
+
+<script type="text/javascript">
+
+
+var qrcode = new QRCode(document.getElementById("qrcode"), {
+	width : 200,
+	height : 200
+});
+
+function makeCode () {		
+	var elText = document.getElementById("text");
+	if (!elText.value) {
+		elText.focus();
+		return;
+	}
+	qrcode.makeCode(elText.value);
+}
+makeCode();
+$("#text").
+	on("blur", function () {
+		makeCode();
+	}).
+	on("keydown", function (e) {
+		if (e.keyCode == 13) {
+			makeCode();
+		}
+	});
+</script>
+</body>

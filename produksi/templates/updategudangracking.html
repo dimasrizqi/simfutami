@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{ title }} </title>
+</head>
+<body>
+	<form method="POST">
+	{% csrf_token %}
+	<table>
+		{{ transisi_form.as_table }}
+		{{gudangracking_form}}
+	</table>
+	<button type="Submit">SAVE</button>
+	</form>
+	
+</body>
+</html>

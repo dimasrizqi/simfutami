@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{ title }} </title>
+</head>
+<body>
+	
+	<form method="POST">
+	{% csrf_token %}
+	<table>
+		{{ statusproductform.as_table }}
+	</table>
+	<button type="Submit">SAVE</button>
+	</form>
+	
+</body>
+</html>
