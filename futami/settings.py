@@ -25,10 +25,7 @@ SECRET_KEY = '$wb2k9))bp!ky*q-2q8&mloq6_#wfb^33p@jlc7de^$^^3vc%$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [ '127.0.0.1', 'localhost',
-                '192.168.20.150',
-                'plant.futami.co.id',
-                '192.168.20.144']
+ALLOWED_HOSTS = [ '*']
 
 
 # Application definition
@@ -42,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'inventory',
     'produksi',
+    'kegiatan',
 ]
 
 MIDDLEWARE = [
@@ -59,7 +57,7 @@ ROOT_URLCONF = 'futami.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [''],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -133,5 +131,11 @@ USE_L10N = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
+#change this to change redirect url
+LOGIN_REDIRECT_URL = '/produksi/mgmt'
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+STATICFILES_DIRS = [ 
+    os.path.join(BASE_DIR, 'static'), 
+]
+
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static/')

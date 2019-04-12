@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block contents %}
+<table class="responsive-table highlight centered">
+      <thead class="materialize-red-text text-lighten-1">
+        <tr>
+          <th scope="col">No.</th>
+          <th scope="col">Kode Product</th>
+          <th scope="col">Nama Product</th>
+          <th scope="col">Varian</th>
+          <th scope="col">Tanggal Input</th>
+          <th scope="col">Deskripsi</th>
+          <th scope="col" colspan="2">Options</th>
+        </tr>
+      </thead>
+      <tbody>   
+        {% for a in productperpalet reversed %}
+            <tr>
+              <th scope="row">{{forloop.counter }}</th>
+              <td>{{ a.kode_product }}</td>
+              <td>{{ a.nama_product }}</td>
+              <td>{{ a.varian }}</td>
+              <td> {{a.update_time |date:'d F Y'}} </td>
+              <td> {{a.deskripsi}} </td>
+              <td></td>
+            </tr>
+        {%endfor%}  
+      </tbody>
+    </table>
+{% endblock contents %}

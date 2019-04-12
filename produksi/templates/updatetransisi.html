@@ -4,14 +4,14 @@
 	<title>{{ title }} </title>
 </head>
 <body>
-	Selamat datang <u>{{pengguna.username}}</u><br>
 	Silahkan update posisi product
 	<form method="POST">
 
 	{% csrf_token %}
 	<table>
-		{{ transisi_form.as_table }}
+	{{ transisi_form.as_table }}
 	</table>
+	<!-- {{ transisi_form.status_perpindahannya }} -->
 	<button type="Submit">SAVE</button>
 	</form>
 	

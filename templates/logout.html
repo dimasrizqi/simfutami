@@ -1,0 +1,22 @@
+{% extends "base_login.html" %}
+{% block contents %}
+<div class="m-login__signin">
+<div class="m-login__head">
+    <h3 class="m-login__title">
+        Anda sudah logout...
+    </h3>
+</div>
+
+<form class="m-login__form m-form" action="/login" >
+        {% csrf_token %}
+
+    
+    <div class="m-login__form-action">
+        
+        <button type="submit" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air">
+            KLIK UNTUK LOGIN
+        </button>
+    </div>
+</form>
+</div>
+{% endblock contents %}

@@ -1,0 +1,17 @@
+
+{% extends "base_login.html" %}
+{% block contents %}
+<div class="m-login__signin">
+<div class="m-login__head">
+    <h3 class="m-login__title">
+            Sign In To Applications
+    </h3><br>
+</div>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Login</button>
+  </form>
+</div>
+{% endblock contents %}

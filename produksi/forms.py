@@ -10,8 +10,19 @@ class productperpaletform(forms.ModelForm):
 				attrs = {
 					'readonly':'readonly'
 				}
+				),
+			'pengguna' : forms.Select(
+				attrs = {
+					'class':'form-control m-input m-input--square'
+				}
+				),
+			'kode_product' : forms.Select(
+				attrs = {
+					'class':'form-control m-input m-input--square'
+				}
 				)
 		}
+
 
 class productform(forms.ModelForm):
 	class Meta:
@@ -22,7 +33,12 @@ class productform(forms.ModelForm):
 				attrs = {
 					'readonly':'readonly'
 				}
-				)
+				),
+			'pengguna' : forms.Select(
+				attrs = {
+					'class':'form-control m-input m-input--square'
+				}
+				),
 		}
 
 class InstagramForm(forms.ModelForm):
@@ -37,19 +53,18 @@ class InstagramForm(forms.ModelForm):
 class transisiform(forms.ModelForm):
 	class Meta:
 		model = transisi
-		fields = [
-			'product_per_palet',
-			'status_perpindahan',
-			'pengguna'
-			#'update_time'
-		]
+		fields = '__all__'
+		labels = {
+			"status_perpindahannya":"Lokasi product"
+		}
 
-		widgets = {
-			'product_per_palet' : forms.Select(
-				attrs = {
-					# 'hidden':'hidden'
-				}
-				)
+class lokasi_product_form(forms.ModelForm):
+	class Meta:
+		model = transisi
+		fields = '__all__'
+
+		labels = {
+			"status_perpindahanya":"Lokasi product"
 		}
 
 class status_product_form(forms.ModelForm):
@@ -60,6 +75,8 @@ class status_product_form(forms.ModelForm):
 			'status_product',
 			'pengguna'
 		]
+
+		
 		
 class gudangrackingform(forms.ModelForm):
 	class Meta:
@@ -72,10 +89,4 @@ class gudangrackingform(forms.ModelForm):
 			'baris',
 			'pengguna'
 		]
-		widgets = {
-			'blok' : forms.Select(
-				attrs = {
-					# 'hidden':'hidden'
-				}
-				)
-		}
+		

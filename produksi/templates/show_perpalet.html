@@ -1,35 +1,30 @@
-{% load staticfiles %}<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
-<head>
-<title>{{ title }}</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
-<script type="text/javascript" src="{% static 'jquery.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'qrcode.js' %}"></script>
-</head>
-<body >
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block contents %}
+
 <div >
 {% for a in productperpalet %}
 
 <!-- <a href="/produksi"><img src="/static/home.png" style=" width: 25px; height:25px; border:0; margin: 5px; " ></a> -->
 
-<div id="qrcode" style="width:200px; height:200px; margin-top:5px;  padding:10px;"><img src="/static/futami.png" style="
-position: absolute; 
-top: 95px;
-left:60px;
+<div id="qrcode" style="width:200px; height:200px;">
+<!-- <img src="/static/futami.png" style="
+position: relative; 
+top: 255px;
+left:200px;
 background-color: white;
 border-radius:6px;
 width:110px; 
 height:40px
-z-index: 1">
-
+z-index: 1"> -->
 </div>
-
+<br>
 <input id="text" type="text" value="{{ a.productperpalet_id }}-{{ a.kode_product }}-{{ a.nomor_batch }}-{{ a.nomor_palet }}-{{ a.tanggal_produksi|date:'d-m-Y' }}" style="width:auto;text-align: center;" readonly>
 
 <br>
 <u> {{ title }}</u>
-<table>
+<table class=" ">
 	<tr>
 		<td>kode product</td>
 		<td> : </td>
@@ -54,12 +49,13 @@ z-index: 1">
 
 {% endfor%}
 <form>
-<button onclick="print_qr()">Print</button>
-<input type="button" value="Kembali" onclick="history.back()">
+<button class="btn m-btn--pill " onclick="print_qr()">Print</button>
+<input class="btn m-btn--pill " type="button" value="Kembali" onclick="history.back()">
 
 
 </form>
 </div>
+
 <script type="text/javascript">
 
 function print_qr() {
@@ -100,4 +96,4 @@ $("#text").
 		}
 	});
 </script>
-</body>
+{% endblock contents %}

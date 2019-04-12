@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block contents %}
+<table class="responsive-table highlight centered">
+      <thead class="materialize-red-text text-lighten-1">
+        <tr>
+          <th scope="col">No.</th>
+          <th scope="col">Kode Product</th>
+          <th scope="col">No. Batch</th>
+          <th scope="col">No. Palet</th>
+          <th scope="col">Tanggal Produksi</th>
+          <th scope="col">Jam Produksi</th>
+          <th scope="col" colspan="2">Options</th>
+        </tr>
+      </thead>
+      <tbody>   
+        {% for a in productperpalet reversed %}
+            <tr>
+              <th scope="row">{{forloop.counter }}</th>
+              <td>{{ a.kode_product }}</td>
+              <td>{{ a.nomor_batch }}</td>
+              <td>{{ a.nomor_palet }}</td>
+              <td> {{a.tanggal_produksi|date:'d F Y'}} </td>
+              <td> {{a.tanggal_produksi|date:'H:i'}} </td>
+              <!-- btn-focus m-btn m-btn--pill m-btn--custom m-btn--air -->
+              <td><a class="btn m-btn--pill " href="/produksi/palet/{{ a.productperpalet_id }}" title="">Lihat QRCODE</a></td>
+              <td><a class="btn m-btn--pill " href="/produksi/history/{{ a.productperpalet_id }}" title="">Lihat history</a></td>
+            </tr>
+        {%endfor%}  
+      </tbody>
+    </table>
+{% endblock contents %}

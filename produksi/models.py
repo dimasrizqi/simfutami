@@ -86,22 +86,16 @@ class productperpalet(models.Model):
 class lokasipenyimpanan(models.Model):
 	lokasi_penyimpanan_id = models.AutoField(primary_key=True)
 	tempat = models.CharField(max_length=100)
-
+	def __str__(self):
+		return "{}".format(self.tempat)
 class transisi(models.Model):
-	choose_status_perpindahan = (
-		('CONVEYOR' , 'CONVEYOR'),
-		('GUDANG TRANSISI' , 'GUDANG TRANSISI'),
-		('GUDANG HCI' , 'GUDANG HCI'),
-		('GUDANG RACKING' , 'GUDANG RACKING')
-		)
-	transisi_id = models.AutoField(primary_key=True)
 	product_per_palet =  models.ForeignKey('productperpalet')
-	status_perpindahan = models.CharField(max_length=100, choices=choose_status_perpindahan)
+	status_perpindahannya = models.ForeignKey('lokasipenyimpanan')
 	pengguna = models.ForeignKey('pengguna')
 	update_time = models.DateTimeField(default=timezone.now)
 
 	def __str__(self):
-		return "{}.{}.{}.{}".format(self.update_time,self.transisi_id,self.status_perpindahan,self.product_per_palet)
+		return "{}.{}".format(self.product_per_palet,self.status_perpindahannya)
 		
 
 class gudangracking(models.Model):

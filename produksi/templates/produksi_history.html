@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block contents %}
+	<u>Detail Lokasi Product</u>
+	<table >
+		<th>No.</th>
+		<th>Kode Product Perpalet</th>
+		<th>Posisi Palet</th>
+		<th>User update</th>
+		<th>Waktu Update</th>
+		{% for a in detail_transisi %}
+		<tr>
+			<td>{{forloop.counter}}</td>
+			<td>{{ a.product_per_palet }}</td>
+			<td>{{ a.status_perpindahannya }}</td>
+			<td> {{a.pengguna}} </td>
+			<td> {{a.update_time  |date:'d F Y - H:i'}}  </td>
+		</tr>
+		{% endfor %}
+	</table><br>
+
+	<u>Detail Status Product</u>
+	<table >
+		<th>No.</th>
+		<th>Kode Product Perpalet</th>
+		<th>Status Product</th>
+		<th>User update</th>
+		<th>Waktu Update</th>
+		{% for a in status_product %}
+		
+		<tr>
+			<td>{{forloop.counter}}</td>
+			<td>{{ a.product_per_palet }}</td>
+			<td>{{ a.status_product }}</td>
+			<td> {{a.pengguna}} </td>
+			<td> {{a.update_time|date:'d F Y - H:i'}}  </td>
+		</tr>
+		{% endfor %}
+	</table><br>
+
+	<u>Penyimpanan gudang Racking</u>
+	<table >
+		<th>No.</th>
+		<th>Kode Product Perpalet</th>
+		<th>Penyimpanan Product</th>
+		<th>User update</th>
+		<th>Waktu Update</th>
+		{% for a in gudang_racking %}
+		
+		<tr>
+			<td>{{forloop.counter}}</td>
+			<td>{{ a.product_per_palet }}</td>
+			<td>
+				Blok : {{ a.blok }}<br>
+				Tingkat : {{a.tingkat}}<br>
+				Baris : {{a.baris}}<br>
+				Lorong : {{a.lorong}}<br>
+			</td>
+			<td> {{a.pengguna}} </td>
+			<td> {{a.update_time|date:'d F Y - H:i'}}  </td>
+		</tr>
+		{% endfor %}
+	</table>
+{% endblock contents %}
